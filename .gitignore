@@ -1,0 +1,11 @@
+build/
+test/*.png
+.build/
+.swiftpm/
+*.xcuserstate
+.DS_Store
+test/*.txt
+*.keychain-db
+*.p12
+*.mobileprovision
+.env*

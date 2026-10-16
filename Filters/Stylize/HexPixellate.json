@@ -1,0 +1,39 @@
+{
+  "NAME": "Hexagonal Pixellate",
+  "CATEGORIES": [
+    "Stylize",
+    "Core Image"
+  ],
+  "DESCRIPTION": "Hexagonal tiles (CIHexagonalPixellate).",
+  "INPUTS": [
+    {
+      "NAME": "scale",
+      "LABEL": "Cell Size %",
+      "TYPE": "float",
+      "DEFAULT": 3,
+      "MIN": 0.5,
+      "MAX": 15
+    },
+    {
+      "NAME": "center",
+      "LABEL": "Center",
+      "TYPE": "point2D",
+      "DEFAULT": [
+        0.5,
+        0.5
+      ]
+    }
+  ],
+  "GRAPH": [
+    {
+      "ID": "fx",
+      "FILTER": "CIHexagonalPixellate",
+      "INPUTS": {
+        "inputImage": "$input",
+        "inputCenter": "%center",
+        "inputScale": "=scale * HEIGHT / 100"
+      }
+    }
+  ],
+  "OUTPUT": "@fx"
+}

@@ -1,0 +1,66 @@
+{
+  "NAME": "Light Tunnel",
+  "CATEGORIES": [
+    "Distortion",
+    "Core Image"
+  ],
+  "DESCRIPTION": "Spiralling light tunnel (CILightTunnel).",
+  "INPUTS": [
+    {
+      "NAME": "center",
+      "LABEL": "Center",
+      "TYPE": "point2D",
+      "DEFAULT": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "NAME": "rotation",
+      "LABEL": "Rotation",
+      "TYPE": "float",
+      "DEFAULT": 0,
+      "MIN": -6.28,
+      "MAX": 6.28
+    },
+    {
+      "NAME": "radius",
+      "LABEL": "Radius",
+      "TYPE": "float",
+      "DEFAULT": 0.2,
+      "MIN": 0.01,
+      "MAX": 1
+    },
+    {
+      "NAME": "spin",
+      "LABEL": "Spin",
+      "TYPE": "float",
+      "DEFAULT": 0.5,
+      "MIN": -2,
+      "MAX": 2
+    }
+  ],
+  "GRAPH": [
+    {
+      "ID": "clamped",
+      "FILTER": "CIAffineClamp",
+      "INPUTS": {
+        "inputImage": "$input",
+        "inputTransform": {
+          "TRANSFORM": {}
+        }
+      }
+    },
+    {
+      "ID": "fx",
+      "FILTER": "CILightTunnel",
+      "INPUTS": {
+        "inputImage": "@clamped",
+        "inputCenter": "%center",
+        "inputRotation": "=rotation + TIME * spin",
+        "inputRadius": "=radius * HEIGHT"
+      }
+    }
+  ],
+  "OUTPUT": "@fx"
+}

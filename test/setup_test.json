@@ -1,0 +1,109 @@
+{
+  "scenes" : [
+    {
+      "effects" : [
+        {
+          "effectID" : "Halo",
+          "enabled" : true,
+          "id" : "3BDDB562-B6A0-4D06-92D3-1411107DAA4A",
+          "params" : {
+
+          }
+        },
+        {
+          "effectID" : "qc.Sobel",
+          "enabled" : false,
+          "id" : "5181D698-BF31-4B71-B988-82788B63D3FC",
+          "params" : {
+
+          }
+        },
+        {
+          "effectID" : "Matrix",
+          "enabled" : false,
+          "id" : "8E65161E-7782-4C1B-9AB8-2F5CEE67C1A7",
+          "params" : {
+
+          }
+        },
+        {
+          "effectID" : "isf.Kaleidoscope",
+          "enabled" : false,
+          "id" : "9F0C4D31-1807-4CD7-AD89-8C343BB57CDD",
+          "params" : {
+
+          }
+        }
+      ],
+      "enabled" : true,
+      "fps" : 30,
+      "height" : 1080,
+      "id" : "70093075-1117-4690-B5C0-CC0F60E91DC8",
+      "layers" : [
+        {
+          "blend" : "normal",
+          "crop" : [
+            0,
+            0,
+            0,
+            0
+          ],
+          "effects" : [
+
+          ],
+          "enabled" : true,
+          "fit" : "fill",
+          "id" : "87ACC08B-BC8F-4B6D-B0E0-EFA36525EABA",
+          "mirror" : false,
+          "opacity" : 1,
+          "rotation" : 0,
+          "scale" : 1,
+          "source" : {
+            "identifier" : "test\/face169.jpg",
+            "kind" : "image",
+            "name" : "face169.jpg",
+            "options" : {
+
+            }
+          },
+          "x" : 0.5,
+          "y" : 0.5
+        },
+        {
+          "blend" : "normal",
+          "crop" : [
+            0,
+            0,
+            0,
+            0
+          ],
+          "effects" : [
+
+          ],
+          "enabled" : true,
+          "fit" : "fill",
+          "id" : "9471C928-C02F-495F-A001-3D4E72A909AC",
+          "mirror" : false,
+          "opacity" : 1,
+          "rotation" : 0,
+          "scale" : 0.28,
+          "source" : {
+            "identifier" : "plasma",
+            "kind" : "pattern",
+            "name" : "Plasma",
+            "options" : {
+
+            }
+          },
+          "x" : 0.82,
+          "y" : 0.8
+        }
+      ],
+      "name" : "CamTwizzle",
+      "outputDeviceUID" : "",
+      "syphonOutput" : false,
+      "width" : 1920
+    }
+  ],
+  "version" : 1
+}

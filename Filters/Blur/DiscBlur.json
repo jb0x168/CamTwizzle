@@ -1,0 +1,39 @@
+{
+  "NAME": "Disc Blur",
+  "CATEGORIES": [
+    "Blur",
+    "Core Image"
+  ],
+  "DESCRIPTION": "Lens-like disc blur (CIDiscBlur).",
+  "INPUTS": [
+    {
+      "NAME": "radius",
+      "LABEL": "Radius %",
+      "TYPE": "float",
+      "DEFAULT": 1.5,
+      "MIN": 0,
+      "MAX": 10
+    }
+  ],
+  "GRAPH": [
+    {
+      "ID": "clamped",
+      "FILTER": "CIAffineClamp",
+      "INPUTS": {
+        "inputImage": "$input",
+        "inputTransform": {
+          "TRANSFORM": {}
+        }
+      }
+    },
+    {
+      "ID": "fx",
+      "FILTER": "CIDiscBlur",
+      "INPUTS": {
+        "inputImage": "@clamped",
+        "inputRadius": "=radius * HEIGHT / 100"
+      }
+    }
+  ],
+  "OUTPUT": "@fx"
+}

@@ -1,0 +1,11 @@
+{
+  "NAME": "Edge Work",
+  "CATEGORIES": ["CamTwist", "Stylize"],
+  "DESCRIPTION": "Woodcut-like black and white rendition (CIEdgeWork), as in CamTwist's Edge Work.",
+  "INPUTS": [ { "NAME": "radius", "LABEL": "Radius", "TYPE": "float", "DEFAULT": 3, "MIN": 0, "MAX": 20 } ],
+  "GRAPH": [
+    { "ID": "ew", "FILTER": "CIEdgeWork", "INPUTS": { "inputImage": "$input", "inputRadius": "=radius" } },
+    { "ID": "bg", "FILTER": "CIConstantColorGenerator", "INPUTS": { "inputColor": { "COLOR": [0, 0, 0, 1] } } },
+    { "ID": "out", "FILTER": "CISourceOverCompositing", "INPUTS": { "inputImage": "@ew", "inputBackgroundImage": "@bg" } }
+  ]
+}

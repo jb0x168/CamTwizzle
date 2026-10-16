@@ -1,0 +1,19 @@
+{
+  "NAME": "Fade",
+  "CATEGORIES": [
+    "Photo",
+    "Core Image"
+  ],
+  "DESCRIPTION": "Photo effect: Fade.",
+  "INPUTS": [],
+  "GRAPH": [
+    {
+      "ID": "fx",
+      "FILTER": "CIPhotoEffectFade",
+      "INPUTS": {
+        "inputImage": "$input"
+      }
+    }
+  ],
+  "OUTPUT": "@fx"
+}

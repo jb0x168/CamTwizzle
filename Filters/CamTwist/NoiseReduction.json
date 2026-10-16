@@ -1,0 +1,10 @@
+{
+  "NAME": "Noise Reduction",
+  "CATEGORIES": ["CamTwist", "Blur"],
+  "DESCRIPTION": "Cleans up grainy webcam pictures (CINoiseReduction).",
+  "INPUTS": [
+    { "NAME": "noise", "LABEL": "Noise Level", "TYPE": "float", "DEFAULT": 0.02, "MIN": 0, "MAX": 0.1 },
+    { "NAME": "sharpness", "LABEL": "Sharpness", "TYPE": "float", "DEFAULT": 0.4, "MIN": 0, "MAX": 2 }
+  ],
+  "GRAPH": [ { "ID": "n", "FILTER": "CINoiseReduction", "INPUTS": { "inputImage": "$input", "inputNoiseLevel": "=noise", "inputSharpness": "=sharpness" } } ]
+}

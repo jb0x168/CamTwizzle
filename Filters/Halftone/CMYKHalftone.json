@@ -1,0 +1,75 @@
+{
+  "NAME": "CMYK Halftone",
+  "CATEGORIES": [
+    "Halftone",
+    "Core Image"
+  ],
+  "DESCRIPTION": "Four-color print halftone (CICMYKHalftone).",
+  "INPUTS": [
+    {
+      "NAME": "center",
+      "LABEL": "Center",
+      "TYPE": "point2D",
+      "DEFAULT": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "NAME": "angle",
+      "LABEL": "Angle",
+      "TYPE": "float",
+      "DEFAULT": 0,
+      "MIN": 0,
+      "MAX": 180
+    },
+    {
+      "NAME": "width",
+      "LABEL": "Dot Width %",
+      "TYPE": "float",
+      "DEFAULT": 0.9,
+      "MIN": 0.3,
+      "MAX": 5
+    },
+    {
+      "NAME": "sharpness",
+      "LABEL": "Sharpness",
+      "TYPE": "float",
+      "DEFAULT": 0.7,
+      "MIN": 0,
+      "MAX": 1
+    },
+    {
+      "NAME": "gcr",
+      "LABEL": "Gray Removal",
+      "TYPE": "float",
+      "DEFAULT": 1,
+      "MIN": 0,
+      "MAX": 1
+    },
+    {
+      "NAME": "ucr",
+      "LABEL": "Under-color Removal",
+      "TYPE": "float",
+      "DEFAULT": 0.5,
+      "MIN": 0,
+      "MAX": 1
+    }
+  ],
+  "GRAPH": [
+    {
+      "ID": "fx",
+      "FILTER": "CICMYKHalftone",
+      "INPUTS": {
+        "inputImage": "$input",
+        "inputCenter": "%center",
+        "inputAngle": "=angle * PI / 180",
+        "inputWidth": "=width * HEIGHT / 100",
+        "inputSharpness": "=sharpness",
+        "inputGCR": "=gcr",
+        "inputUCR": "=ucr"
+      }
+    }
+  ],
+  "OUTPUT": "@fx"
+}

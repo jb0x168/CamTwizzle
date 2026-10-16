@@ -1,0 +1,19 @@
+{
+  "NAME": "Comic",
+  "CATEGORIES": [
+    "Stylize",
+    "Core Image"
+  ],
+  "DESCRIPTION": "Core Image's comic book effect (CIComicEffect).",
+  "INPUTS": [],
+  "GRAPH": [
+    {
+      "ID": "fx",
+      "FILTER": "CIComicEffect",
+      "INPUTS": {
+        "inputImage": "$input"
+      }
+    }
+  ],
+  "OUTPUT": "@fx"
+}

@@ -1,0 +1,57 @@
+{
+  "NAME": "Op Art Tile",
+  "CATEGORIES": [
+    "Tiles",
+    "Core Image"
+  ],
+  "DESCRIPTION": "Op-art segmentation and tiling (CIOpTile).",
+  "INPUTS": [
+    {
+      "NAME": "center",
+      "LABEL": "Center",
+      "TYPE": "point2D",
+      "DEFAULT": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "NAME": "scale",
+      "LABEL": "Scale",
+      "TYPE": "float",
+      "DEFAULT": 2.8,
+      "MIN": 0.1,
+      "MAX": 10
+    },
+    {
+      "NAME": "angle",
+      "LABEL": "Angle",
+      "TYPE": "float",
+      "DEFAULT": 0,
+      "MIN": 0,
+      "MAX": 360
+    },
+    {
+      "NAME": "width",
+      "LABEL": "Width %",
+      "TYPE": "float",
+      "DEFAULT": 12,
+      "MIN": 2,
+      "MAX": 50
+    }
+  ],
+  "GRAPH": [
+    {
+      "ID": "fx",
+      "FILTER": "CIOpTile",
+      "INPUTS": {
+        "inputImage": "$input",
+        "inputCenter": "%center",
+        "inputScale": "=scale",
+        "inputAngle": "=angle * PI / 180",
+        "inputWidth": "=width * HEIGHT / 100"
+      }
+    }
+  ],
+  "OUTPUT": "@fx"
+}

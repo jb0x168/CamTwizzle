@@ -1,0 +1,68 @@
+{
+  "NAME": "Glass Lozenge",
+  "CATEGORIES": [
+    "Distortion",
+    "Core Image"
+  ],
+  "DESCRIPTION": "A lozenge of thick glass (CIGlassLozenge).",
+  "INPUTS": [
+    {
+      "NAME": "point0",
+      "LABEL": "Start",
+      "TYPE": "point2D",
+      "DEFAULT": [
+        0.35,
+        0.5
+      ]
+    },
+    {
+      "NAME": "point1",
+      "LABEL": "End",
+      "TYPE": "point2D",
+      "DEFAULT": [
+        0.65,
+        0.5
+      ]
+    },
+    {
+      "NAME": "radius",
+      "LABEL": "Radius",
+      "TYPE": "float",
+      "DEFAULT": 0.18,
+      "MIN": 0.05,
+      "MAX": 0.6
+    },
+    {
+      "NAME": "refraction",
+      "LABEL": "Refraction",
+      "TYPE": "float",
+      "DEFAULT": 1.7,
+      "MIN": 0,
+      "MAX": 5
+    }
+  ],
+  "GRAPH": [
+    {
+      "ID": "clamped",
+      "FILTER": "CIAffineClamp",
+      "INPUTS": {
+        "inputImage": "$input",
+        "inputTransform": {
+          "TRANSFORM": {}
+        }
+      }
+    },
+    {
+      "ID": "fx",
+      "FILTER": "CIGlassLozenge",
+      "INPUTS": {
+        "inputImage": "@clamped",
+        "inputPoint0": "%point0",
+        "inputPoint1": "%point1",
+        "inputRadius": "=radius * HEIGHT",
+        "inputRefraction": "=refraction"
+      }
+    }
+  ],
+  "OUTPUT": "@fx"
+}

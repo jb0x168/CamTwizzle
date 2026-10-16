@@ -1,0 +1,19 @@
+{
+  "NAME": "Noir",
+  "CATEGORIES": [
+    "Photo",
+    "Core Image"
+  ],
+  "DESCRIPTION": "Photo effect: Noir.",
+  "INPUTS": [],
+  "GRAPH": [
+    {
+      "ID": "fx",
+      "FILTER": "CIPhotoEffectNoir",
+      "INPUTS": {
+        "inputImage": "$input"
+      }
+    }
+  ],
+  "OUTPUT": "@fx"
+}

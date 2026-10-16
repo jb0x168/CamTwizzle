@@ -1,0 +1,19 @@
+{
+  "NAME": "Chrome",
+  "CATEGORIES": [
+    "Photo",
+    "Core Image"
+  ],
+  "DESCRIPTION": "Photo effect: Chrome.",
+  "INPUTS": [],
+  "GRAPH": [
+    {
+      "ID": "fx",
+      "FILTER": "CIPhotoEffectChrome",
+      "INPUTS": {
+        "inputImage": "$input"
+      }
+    }
+  ],
+  "OUTPUT": "@fx"
+}

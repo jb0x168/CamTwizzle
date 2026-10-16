@@ -1,0 +1,57 @@
+{
+  "NAME": "Dot Screen",
+  "CATEGORIES": [
+    "Halftone",
+    "Core Image"
+  ],
+  "DESCRIPTION": "Newspaper dot halftone (CIDotScreen).",
+  "INPUTS": [
+    {
+      "NAME": "center",
+      "LABEL": "Center",
+      "TYPE": "point2D",
+      "DEFAULT": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "NAME": "angle",
+      "LABEL": "Angle",
+      "TYPE": "float",
+      "DEFAULT": 45,
+      "MIN": 0,
+      "MAX": 180
+    },
+    {
+      "NAME": "width",
+      "LABEL": "Width %",
+      "TYPE": "float",
+      "DEFAULT": 1.0,
+      "MIN": 0.3,
+      "MAX": 5
+    },
+    {
+      "NAME": "sharpness",
+      "LABEL": "Sharpness",
+      "TYPE": "float",
+      "DEFAULT": 0.7,
+      "MIN": 0,
+      "MAX": 1
+    }
+  ],
+  "GRAPH": [
+    {
+      "ID": "fx",
+      "FILTER": "CIDotScreen",
+      "INPUTS": {
+        "inputImage": "$input",
+        "inputCenter": "%center",
+        "inputAngle": "=angle * PI / 180",
+        "inputWidth": "=width * HEIGHT / 100",
+        "inputSharpness": "=sharpness"
+      }
+    }
+  ],
+  "OUTPUT": "@fx"
+}

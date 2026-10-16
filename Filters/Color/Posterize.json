@@ -1,0 +1,29 @@
+{
+  "NAME": "Posterize",
+  "CATEGORIES": [
+    "Color",
+    "Core Image"
+  ],
+  "DESCRIPTION": "Reduce the number of color levels (CIColorPosterize).",
+  "INPUTS": [
+    {
+      "NAME": "levels",
+      "LABEL": "Levels",
+      "TYPE": "float",
+      "DEFAULT": 5,
+      "MIN": 2,
+      "MAX": 16
+    }
+  ],
+  "GRAPH": [
+    {
+      "ID": "fx",
+      "FILTER": "CIColorPosterize",
+      "INPUTS": {
+        "inputImage": "$input",
+        "inputLevels": "=levels"
+      }
+    }
+  ],
+  "OUTPUT": "@fx"
+}

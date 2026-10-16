@@ -1,0 +1,37 @@
+{
+  "NAME": "Hue Shift",
+  "CATEGORIES": [
+    "Color",
+    "Core Image"
+  ],
+  "DESCRIPTION": "Rotate all hues (CIHueAdjust); optional cycling.",
+  "INPUTS": [
+    {
+      "NAME": "angle",
+      "LABEL": "Angle",
+      "TYPE": "float",
+      "DEFAULT": 90,
+      "MIN": -180,
+      "MAX": 180
+    },
+    {
+      "NAME": "cycle",
+      "LABEL": "Cycle Speed",
+      "TYPE": "float",
+      "DEFAULT": 0,
+      "MIN": 0,
+      "MAX": 3
+    }
+  ],
+  "GRAPH": [
+    {
+      "ID": "fx",
+      "FILTER": "CIHueAdjust",
+      "INPUTS": {
+        "inputImage": "$input",
+        "inputAngle": "=angle * PI / 180 + TIME * cycle"
+      }
+    }
+  ],
+  "OUTPUT": "@fx"
+}

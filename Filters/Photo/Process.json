@@ -1,0 +1,19 @@
+{
+  "NAME": "Process",
+  "CATEGORIES": [
+    "Photo",
+    "Core Image"
+  ],
+  "DESCRIPTION": "Photo effect: Process.",
+  "INPUTS": [],
+  "GRAPH": [
+    {
+      "ID": "fx",
+      "FILTER": "CIPhotoEffectProcess",
+      "INPUTS": {
+        "inputImage": "$input"
+      }
+    }
+  ],
+  "OUTPUT": "@fx"
+}

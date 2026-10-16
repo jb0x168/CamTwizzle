@@ -1,0 +1,48 @@
+{
+  "NAME": "Motion Blur",
+  "CATEGORIES": [
+    "Blur",
+    "Core Image"
+  ],
+  "DESCRIPTION": "Directional smear (CIMotionBlur).",
+  "INPUTS": [
+    {
+      "NAME": "radius",
+      "LABEL": "Length %",
+      "TYPE": "float",
+      "DEFAULT": 3,
+      "MIN": 0,
+      "MAX": 15
+    },
+    {
+      "NAME": "angle",
+      "LABEL": "Angle",
+      "TYPE": "float",
+      "DEFAULT": 0,
+      "MIN": 0,
+      "MAX": 180
+    }
+  ],
+  "GRAPH": [
+    {
+      "ID": "clamped",
+      "FILTER": "CIAffineClamp",
+      "INPUTS": {
+        "inputImage": "$input",
+        "inputTransform": {
+          "TRANSFORM": {}
+        }
+      }
+    },
+    {
+      "ID": "fx",
+      "FILTER": "CIMotionBlur",
+      "INPUTS": {
+        "inputImage": "@clamped",
+        "inputRadius": "=radius * HEIGHT / 100",
+        "inputAngle": "=angle * PI / 180"
+      }
+    }
+  ],
+  "OUTPUT": "@fx"
+}

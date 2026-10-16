@@ -1,0 +1,19 @@
+{
+  "NAME": "Instant",
+  "CATEGORIES": [
+    "Photo",
+    "Core Image"
+  ],
+  "DESCRIPTION": "Photo effect: Instant (Polaroid-ish).",
+  "INPUTS": [],
+  "GRAPH": [
+    {
+      "ID": "fx",
+      "FILTER": "CIPhotoEffectInstant",
+      "INPUTS": {
+        "inputImage": "$input"
+      }
+    }
+  ],
+  "OUTPUT": "@fx"
+}

@@ -1,0 +1,29 @@
+{
+  "NAME": "Vibrance",
+  "CATEGORIES": [
+    "Color",
+    "Core Image"
+  ],
+  "DESCRIPTION": "Boost muted colors without overdoing skin tones (CIVibrance).",
+  "INPUTS": [
+    {
+      "NAME": "amount",
+      "LABEL": "Amount",
+      "TYPE": "float",
+      "DEFAULT": 0.6,
+      "MIN": -1,
+      "MAX": 1
+    }
+  ],
+  "GRAPH": [
+    {
+      "ID": "fx",
+      "FILTER": "CIVibrance",
+      "INPUTS": {
+        "inputImage": "$input",
+        "inputAmount": "=amount"
+      }
+    }
+  ],
+  "OUTPUT": "@fx"
+}

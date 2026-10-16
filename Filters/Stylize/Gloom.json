@@ -1,0 +1,48 @@
+{
+  "NAME": "Gloom",
+  "CATEGORIES": [
+    "Stylize",
+    "Core Image"
+  ],
+  "DESCRIPTION": "Moody, dulled highlights (CIGloom).",
+  "INPUTS": [
+    {
+      "NAME": "radius",
+      "LABEL": "Radius",
+      "TYPE": "float",
+      "DEFAULT": 2,
+      "MIN": 0,
+      "MAX": 10
+    },
+    {
+      "NAME": "intensity",
+      "LABEL": "Intensity",
+      "TYPE": "float",
+      "DEFAULT": 0.8,
+      "MIN": 0,
+      "MAX": 2
+    }
+  ],
+  "GRAPH": [
+    {
+      "ID": "clamped",
+      "FILTER": "CIAffineClamp",
+      "INPUTS": {
+        "inputImage": "$input",
+        "inputTransform": {
+          "TRANSFORM": {}
+        }
+      }
+    },
+    {
+      "ID": "fx",
+      "FILTER": "CIGloom",
+      "INPUTS": {
+        "inputImage": "@clamped",
+        "inputRadius": "=radius * HEIGHT / 100",
+        "inputIntensity": "=intensity"
+      }
+    }
+  ],
+  "OUTPUT": "@fx"
+}

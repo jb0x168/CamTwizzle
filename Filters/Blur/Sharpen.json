@@ -1,0 +1,48 @@
+{
+  "NAME": "Sharpen",
+  "CATEGORIES": [
+    "Blur",
+    "Core Image"
+  ],
+  "DESCRIPTION": "Crisper details (CISharpenLuminance).",
+  "INPUTS": [
+    {
+      "NAME": "sharpness",
+      "LABEL": "Sharpness",
+      "TYPE": "float",
+      "DEFAULT": 0.6,
+      "MIN": 0,
+      "MAX": 2
+    },
+    {
+      "NAME": "radius",
+      "LABEL": "Radius",
+      "TYPE": "float",
+      "DEFAULT": 1.7,
+      "MIN": 0,
+      "MAX": 10
+    }
+  ],
+  "GRAPH": [
+    {
+      "ID": "clamped",
+      "FILTER": "CIAffineClamp",
+      "INPUTS": {
+        "inputImage": "$input",
+        "inputTransform": {
+          "TRANSFORM": {}
+        }
+      }
+    },
+    {
+      "ID": "fx",
+      "FILTER": "CISharpenLuminance",
+      "INPUTS": {
+        "inputImage": "@clamped",
+        "inputSharpness": "=sharpness",
+        "inputRadius": "=radius"
+      }
+    }
+  ],
+  "OUTPUT": "@fx"
+}

@@ -1,0 +1,57 @@
+{
+  "NAME": "Highlights & Shadows",
+  "CATEGORIES": [
+    "Color",
+    "Core Image"
+  ],
+  "DESCRIPTION": "Recover shadows and tame highlights (CIHighlightShadowAdjust).",
+  "INPUTS": [
+    {
+      "NAME": "shadows",
+      "LABEL": "Shadows",
+      "TYPE": "float",
+      "DEFAULT": 0.4,
+      "MIN": -1,
+      "MAX": 1
+    },
+    {
+      "NAME": "highlights",
+      "LABEL": "Highlights",
+      "TYPE": "float",
+      "DEFAULT": 0.8,
+      "MIN": 0,
+      "MAX": 1
+    },
+    {
+      "NAME": "radius",
+      "LABEL": "Radius",
+      "TYPE": "float",
+      "DEFAULT": 2,
+      "MIN": 0,
+      "MAX": 10
+    }
+  ],
+  "GRAPH": [
+    {
+      "ID": "clamped",
+      "FILTER": "CIAffineClamp",
+      "INPUTS": {
+        "inputImage": "$input",
+        "inputTransform": {
+          "TRANSFORM": {}
+        }
+      }
+    },
+    {
+      "ID": "fx",
+      "FILTER": "CIHighlightShadowAdjust",
+      "INPUTS": {
+        "inputImage": "@clamped",
+        "inputShadowAmount": "=shadows",
+        "inputHighlightAmount": "=highlights",
+        "inputRadius": "=radius"
+      }
+    }
+  ],
+  "OUTPUT": "@fx"
+}

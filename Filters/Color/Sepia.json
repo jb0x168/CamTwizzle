@@ -1,0 +1,29 @@
+{
+  "NAME": "Sepia",
+  "CATEGORIES": [
+    "Color",
+    "Core Image"
+  ],
+  "DESCRIPTION": "Old-photo brown tone (CISepiaTone).",
+  "INPUTS": [
+    {
+      "NAME": "intensity",
+      "LABEL": "Intensity",
+      "TYPE": "float",
+      "DEFAULT": 1,
+      "MIN": 0,
+      "MAX": 1
+    }
+  ],
+  "GRAPH": [
+    {
+      "ID": "fx",
+      "FILTER": "CISepiaTone",
+      "INPUTS": {
+        "inputImage": "$input",
+        "inputIntensity": "=intensity"
+      }
+    }
+  ],
+  "OUTPUT": "@fx"
+}

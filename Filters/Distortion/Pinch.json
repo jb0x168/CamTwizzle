@@ -1,0 +1,58 @@
+{
+  "NAME": "Pinch",
+  "CATEGORIES": [
+    "Distortion",
+    "Core Image"
+  ],
+  "DESCRIPTION": "Pinch towards a point (CIPinchDistortion).",
+  "INPUTS": [
+    {
+      "NAME": "center",
+      "LABEL": "Center",
+      "TYPE": "point2D",
+      "DEFAULT": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "NAME": "radius",
+      "LABEL": "Radius",
+      "TYPE": "float",
+      "DEFAULT": 0.5,
+      "MIN": 0.05,
+      "MAX": 1.5
+    },
+    {
+      "NAME": "scale",
+      "LABEL": "Scale",
+      "TYPE": "float",
+      "DEFAULT": 0.6,
+      "MIN": 0,
+      "MAX": 2
+    }
+  ],
+  "GRAPH": [
+    {
+      "ID": "clamped",
+      "FILTER": "CIAffineClamp",
+      "INPUTS": {
+        "inputImage": "$input",
+        "inputTransform": {
+          "TRANSFORM": {}
+        }
+      }
+    },
+    {
+      "ID": "fx",
+      "FILTER": "CIPinchDistortion",
+      "INPUTS": {
+        "inputImage": "@clamped",
+        "inputCenter": "%center",
+        "inputRadius": "=radius * HEIGHT",
+        "inputScale": "=scale"
+      }
+    }
+  ],
+  "OUTPUT": "@fx"
+}

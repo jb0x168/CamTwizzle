@@ -1,0 +1,39 @@
+{
+  "NAME": "Pointillize",
+  "CATEGORIES": [
+    "Stylize",
+    "Core Image"
+  ],
+  "DESCRIPTION": "Seurat-style dots (CIPointillize).",
+  "INPUTS": [
+    {
+      "NAME": "radius",
+      "LABEL": "Dot Size %",
+      "TYPE": "float",
+      "DEFAULT": 1.2,
+      "MIN": 0.3,
+      "MAX": 5
+    },
+    {
+      "NAME": "center",
+      "LABEL": "Center",
+      "TYPE": "point2D",
+      "DEFAULT": [
+        0.5,
+        0.5
+      ]
+    }
+  ],
+  "GRAPH": [
+    {
+      "ID": "fx",
+      "FILTER": "CIPointillize",
+      "INPUTS": {
+        "inputImage": "$input",
+        "inputCenter": "%center",
+        "inputRadius": "=radius * HEIGHT / 100"
+      }
+    }
+  ],
+  "OUTPUT": "@fx"
+}

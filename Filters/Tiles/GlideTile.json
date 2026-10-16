@@ -1,0 +1,48 @@
+{
+  "NAME": "Glide Reflected Tile",
+  "CATEGORIES": [
+    "Tiles",
+    "Core Image"
+  ],
+  "DESCRIPTION": "Glide-reflection tiling (CIGlideReflectedTile).",
+  "INPUTS": [
+    {
+      "NAME": "center",
+      "LABEL": "Center",
+      "TYPE": "point2D",
+      "DEFAULT": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "NAME": "angle",
+      "LABEL": "Angle",
+      "TYPE": "float",
+      "DEFAULT": 0,
+      "MIN": 0,
+      "MAX": 360
+    },
+    {
+      "NAME": "width",
+      "LABEL": "Tile Size %",
+      "TYPE": "float",
+      "DEFAULT": 30,
+      "MIN": 5,
+      "MAX": 100
+    }
+  ],
+  "GRAPH": [
+    {
+      "ID": "fx",
+      "FILTER": "CIGlideReflectedTile",
+      "INPUTS": {
+        "inputImage": "$input",
+        "inputCenter": "%center",
+        "inputAngle": "=angle * PI / 180",
+        "inputWidth": "=width * HEIGHT / 100"
+      }
+    }
+  ],
+  "OUTPUT": "@fx"
+}

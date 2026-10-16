@@ -1,0 +1,57 @@
+{
+  "NAME": "Vignette",
+  "CATEGORIES": [
+    "Color",
+    "Core Image"
+  ],
+  "DESCRIPTION": "Darkened corners (CIVignetteEffect).",
+  "INPUTS": [
+    {
+      "NAME": "center",
+      "LABEL": "Center",
+      "TYPE": "point2D",
+      "DEFAULT": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "NAME": "radius",
+      "LABEL": "Radius",
+      "TYPE": "float",
+      "DEFAULT": 0.7,
+      "MIN": 0.2,
+      "MAX": 1.5
+    },
+    {
+      "NAME": "intensity",
+      "LABEL": "Intensity",
+      "TYPE": "float",
+      "DEFAULT": 0.9,
+      "MIN": 0,
+      "MAX": 1
+    },
+    {
+      "NAME": "falloff",
+      "LABEL": "Falloff",
+      "TYPE": "float",
+      "DEFAULT": 0.5,
+      "MIN": 0,
+      "MAX": 1
+    }
+  ],
+  "GRAPH": [
+    {
+      "ID": "fx",
+      "FILTER": "CIVignetteEffect",
+      "INPUTS": {
+        "inputImage": "$input",
+        "inputCenter": "%center",
+        "inputRadius": "=radius * HEIGHT",
+        "inputIntensity": "=intensity",
+        "inputFalloff": "=falloff"
+      }
+    }
+  ],
+  "OUTPUT": "@fx"
+}

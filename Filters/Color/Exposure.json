@@ -1,0 +1,29 @@
+{
+  "NAME": "Exposure",
+  "CATEGORIES": [
+    "Color",
+    "Core Image"
+  ],
+  "DESCRIPTION": "Exposure compensation in EV (CIExposureAdjust).",
+  "INPUTS": [
+    {
+      "NAME": "ev",
+      "LABEL": "EV",
+      "TYPE": "float",
+      "DEFAULT": 0.7,
+      "MIN": -3,
+      "MAX": 3
+    }
+  ],
+  "GRAPH": [
+    {
+      "ID": "fx",
+      "FILTER": "CIExposureAdjust",
+      "INPUTS": {
+        "inputImage": "$input",
+        "inputEV": "=ev"
+      }
+    }
+  ],
+  "OUTPUT": "@fx"
+}

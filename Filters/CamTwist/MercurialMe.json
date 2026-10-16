@@ -1,0 +1,20 @@
+{
+  "NAME": "Mercurial Me",
+  "CATEGORIES": ["CamTwist", "Stylize"],
+  "DESCRIPTION": "Turns you into liquid metal: a height field built from the picture, shaded with a chrome sphere (CIHeightFieldFromMask + CIShadedMaterial), after CamTwist's qMercurialMe.",
+  "INPUTS": [
+    { "NAME": "height", "LABEL": "Height", "TYPE": "float", "DEFAULT": 12, "MIN": 1, "MAX": 40 },
+    { "NAME": "threshold", "LABEL": "Contrast", "TYPE": "float", "DEFAULT": 2.0, "MIN": 0.5, "MAX": 4 },
+    { "NAME": "tint", "LABEL": "Tint", "TYPE": "color", "DEFAULT": [0.85, 0.9, 1.0, 1] }
+  ],
+  "GRAPH": [
+    { "ID": "gray", "FILTER": "CIColorControls", "INPUTS": { "inputImage": "$input", "inputSaturation": 0, "inputContrast": "=threshold" } },
+    { "ID": "mask", "FILTER": "CIMaskToAlpha", "INPUTS": { "inputImage": "@gray" } },
+    { "ID": "hf", "FILTER": "CIHeightFieldFromMask", "INPUTS": { "inputImage": "@mask", "inputRadius": "=height" } },
+    { "ID": "sphere", "FILTER": "CIRadialGradient", "INPUTS": { "inputCenter": [128, 150], "inputRadius0": 5, "inputRadius1": 130, "inputColor0": { "COLOR": [1, 1, 1, 1] }, "inputColor1": { "COLOR": [0.05, 0.05, 0.08, 1] } } },
+    { "ID": "shade", "FILTER": "CICrop", "INPUTS": { "inputImage": "@sphere", "inputRectangle": [0, 0, 256, 256] } },
+    { "ID": "metal", "FILTER": "CIShadedMaterial", "INPUTS": { "inputImage": "@hf", "inputShadingImage": "@shade", "inputScale": "=height * 1.5" } },
+    { "ID": "tinted", "FILTER": "CIColorMonochrome", "INPUTS": { "inputImage": "@metal", "inputColor": "%tint", "inputIntensity": 0.35 } }
+  ],
+  "OUTPUT": "@tinted"
+}

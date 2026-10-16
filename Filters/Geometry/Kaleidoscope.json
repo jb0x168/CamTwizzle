@@ -1,0 +1,66 @@
+{
+  "NAME": "Kaleidoscope",
+  "CATEGORIES": [
+    "Geometry",
+    "Core Image"
+  ],
+  "DESCRIPTION": "Classic mirror kaleidoscope (CIKaleidoscope).",
+  "INPUTS": [
+    {
+      "NAME": "count",
+      "LABEL": "Segments",
+      "TYPE": "float",
+      "DEFAULT": 6,
+      "MIN": 2,
+      "MAX": 16
+    },
+    {
+      "NAME": "angle",
+      "LABEL": "Angle",
+      "TYPE": "float",
+      "DEFAULT": 0,
+      "MIN": 0,
+      "MAX": 360
+    },
+    {
+      "NAME": "spin",
+      "LABEL": "Spin",
+      "TYPE": "float",
+      "DEFAULT": 0.1,
+      "MIN": -1,
+      "MAX": 1
+    },
+    {
+      "NAME": "center",
+      "LABEL": "Center",
+      "TYPE": "point2D",
+      "DEFAULT": [
+        0.5,
+        0.5
+      ]
+    }
+  ],
+  "GRAPH": [
+    {
+      "ID": "clamped",
+      "FILTER": "CIAffineClamp",
+      "INPUTS": {
+        "inputImage": "$input",
+        "inputTransform": {
+          "TRANSFORM": {}
+        }
+      }
+    },
+    {
+      "ID": "fx",
+      "FILTER": "CIKaleidoscope",
+      "INPUTS": {
+        "inputImage": "@clamped",
+        "inputCenter": "%center",
+        "inputCount": "=count",
+        "inputAngle": "=angle * PI / 180 + TIME * spin"
+      }
+    }
+  ],
+  "OUTPUT": "@fx"
+}

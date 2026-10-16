@@ -1,0 +1,84 @@
+{
+  "NAME": "Droste",
+  "CATEGORIES": [
+    "Distortion",
+    "Core Image"
+  ],
+  "DESCRIPTION": "Escher-style recursive spiral (CIDroste).",
+  "INPUTS": [
+    {
+      "NAME": "inset0",
+      "LABEL": "Inset Bottom-Left",
+      "TYPE": "point2D",
+      "DEFAULT": [
+        0.25,
+        0.75
+      ]
+    },
+    {
+      "NAME": "inset1",
+      "LABEL": "Inset Top-Right",
+      "TYPE": "point2D",
+      "DEFAULT": [
+        0.75,
+        0.25
+      ]
+    },
+    {
+      "NAME": "strands",
+      "LABEL": "Strands",
+      "TYPE": "float",
+      "DEFAULT": 1,
+      "MIN": -3,
+      "MAX": 3
+    },
+    {
+      "NAME": "periodicity",
+      "LABEL": "Periodicity",
+      "TYPE": "float",
+      "DEFAULT": 1,
+      "MIN": 1,
+      "MAX": 5
+    },
+    {
+      "NAME": "rotation",
+      "LABEL": "Rotation",
+      "TYPE": "float",
+      "DEFAULT": 0,
+      "MIN": 0,
+      "MAX": 6.28
+    },
+    {
+      "NAME": "zoom",
+      "LABEL": "Zoom",
+      "TYPE": "float",
+      "DEFAULT": 1,
+      "MIN": 0.1,
+      "MAX": 4
+    },
+    {
+      "NAME": "speed",
+      "LABEL": "Zoom Speed",
+      "TYPE": "float",
+      "DEFAULT": 0.15,
+      "MIN": 0,
+      "MAX": 1
+    }
+  ],
+  "GRAPH": [
+    {
+      "ID": "fx",
+      "FILTER": "CIDroste",
+      "INPUTS": {
+        "inputImage": "$input",
+        "inputInsetPoint0": "%inset0",
+        "inputInsetPoint1": "%inset1",
+        "inputStrands": "=strands",
+        "inputPeriodicity": "=periodicity",
+        "inputRotation": "=rotation",
+        "inputZoom": "=zoom * exp(fract(TIME * speed) * 2)"
+      }
+    }
+  ],
+  "OUTPUT": "@fx"
+}

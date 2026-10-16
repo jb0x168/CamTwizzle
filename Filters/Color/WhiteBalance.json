@@ -1,0 +1,44 @@
+{
+  "NAME": "White Balance",
+  "CATEGORIES": [
+    "Color",
+    "Core Image"
+  ],
+  "DESCRIPTION": "Warm up or cool down the picture (CITemperatureAndTint).",
+  "INPUTS": [
+    {
+      "NAME": "temperature",
+      "LABEL": "Temperature K",
+      "TYPE": "float",
+      "DEFAULT": 5500,
+      "MIN": 2500,
+      "MAX": 12000
+    },
+    {
+      "NAME": "tint",
+      "LABEL": "Tint",
+      "TYPE": "float",
+      "DEFAULT": 0,
+      "MIN": -100,
+      "MAX": 100
+    }
+  ],
+  "GRAPH": [
+    {
+      "ID": "fx",
+      "FILTER": "CITemperatureAndTint",
+      "INPUTS": {
+        "inputImage": "$input",
+        "inputNeutral": [
+          6500,
+          0
+        ],
+        "inputTargetNeutral": [
+          "=temperature",
+          "=tint"
+        ]
+      }
+    }
+  ],
+  "OUTPUT": "@fx"
+}

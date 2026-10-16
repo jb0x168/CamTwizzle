@@ -1,0 +1,56 @@
+{
+  "NAME": "Sixfold Rotated Tile",
+  "CATEGORIES": [
+    "Tiles",
+    "Core Image"
+  ],
+  "DESCRIPTION": "Six-way rotated tiling (CISixfoldRotatedTile).",
+  "INPUTS": [
+    {
+      "NAME": "center",
+      "LABEL": "Center",
+      "TYPE": "point2D",
+      "DEFAULT": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "NAME": "angle",
+      "LABEL": "Angle",
+      "TYPE": "float",
+      "DEFAULT": 0,
+      "MIN": 0,
+      "MAX": 360
+    },
+    {
+      "NAME": "width",
+      "LABEL": "Tile Size %",
+      "TYPE": "float",
+      "DEFAULT": 30,
+      "MIN": 5,
+      "MAX": 100
+    },
+    {
+      "NAME": "spin",
+      "LABEL": "Spin",
+      "TYPE": "float",
+      "DEFAULT": 0.0,
+      "MIN": -1,
+      "MAX": 1
+    }
+  ],
+  "GRAPH": [
+    {
+      "ID": "fx",
+      "FILTER": "CISixfoldRotatedTile",
+      "INPUTS": {
+        "inputImage": "$input",
+        "inputCenter": "%center",
+        "inputAngle": "=angle * PI / 180 + TIME * spin",
+        "inputWidth": "=width * HEIGHT / 100"
+      }
+    }
+  ],
+  "OUTPUT": "@fx"
+}

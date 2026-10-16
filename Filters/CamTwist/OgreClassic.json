@@ -1,0 +1,21 @@
+{
+  "NAME": "Ogre (Classic)",
+  "CATEGORIES": ["CamTwist", "Distortion"],
+  "DESCRIPTION": "Lumpy, monstrous self-displacement: the image is pushed around by a blurred map of its own edges. Port of CamTwist's qOgre.qtz.",
+  "CREDIT": "CamTwist qOgre.qtz / CamTwizzle port",
+  "INPUTS": [
+    { "NAME": "amount", "LABEL": "Amount", "TYPE": "float", "DEFAULT": 20, "MIN": 0, "MAX": 60 },
+    { "NAME": "lumpiness", "LABEL": "Lumpiness", "TYPE": "float", "DEFAULT": 20, "MIN": 2, "MAX": 60 },
+    { "NAME": "edgeRadius", "LABEL": "Edge Radius", "TYPE": "float", "DEFAULT": 11, "MIN": 1, "MAX": 30 }
+  ],
+  "GRAPH": [
+    { "ID": "smooth", "FILTER": "CIMedianFilter", "INPUTS": { "inputImage": "$input" } },
+    { "ID": "smooth2", "FILTER": "CIMedianFilter", "INPUTS": { "inputImage": "@smooth" } },
+    { "ID": "edges", "FILTER": "CIEdgeWork", "INPUTS": { "inputImage": "@smooth2", "inputRadius": "=edgeRadius" }, "CROP": true },
+    { "ID": "blur", "FILTER": "CIGaussianBlur", "INPUTS": { "inputImage": "@edges", "inputRadius": "=lumpiness" }, "CLAMP": false },
+    { "ID": "clampSrc", "FILTER": "CIAffineClamp", "INPUTS": { "inputImage": "$input", "inputTransform": { "TRANSFORM": {} } } },
+    { "ID": "out", "FILTER": "CIDisplacementDistortion",
+      "INPUTS": { "inputImage": "@clampSrc", "inputDisplacementImage": "@blur", "inputScale": "=amount * 40 * WIDTH / 640" } }
+  ],
+  "OUTPUT": "@out"
+}

@@ -1,0 +1,29 @@
+{
+  "NAME": "Median",
+  "CATEGORIES": [
+    "Blur",
+    "Core Image"
+  ],
+  "DESCRIPTION": "Removes speckles while keeping edges (CIMedianFilter).",
+  "INPUTS": [],
+  "GRAPH": [
+    {
+      "ID": "clamped",
+      "FILTER": "CIAffineClamp",
+      "INPUTS": {
+        "inputImage": "$input",
+        "inputTransform": {
+          "TRANSFORM": {}
+        }
+      }
+    },
+    {
+      "ID": "fx",
+      "FILTER": "CIMedianFilter",
+      "INPUTS": {
+        "inputImage": "@clamped"
+      }
+    }
+  ],
+  "OUTPUT": "@fx"
+}

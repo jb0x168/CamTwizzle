@@ -1,0 +1,7 @@
+{
+  "NAME": "Edges",
+  "CATEGORIES": ["CamTwist", "Stylize"],
+  "DESCRIPTION": "Colorful edge detection (CIEdges).",
+  "INPUTS": [ { "NAME": "intensity", "LABEL": "Intensity", "TYPE": "float", "DEFAULT": 5, "MIN": 0, "MAX": 20 } ],
+  "GRAPH": [ { "ID": "e", "FILTER": "CIEdges", "INPUTS": { "inputImage": "$input", "inputIntensity": "=intensity" } } ]
+}

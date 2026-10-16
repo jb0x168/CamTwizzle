@@ -1,0 +1,29 @@
+{
+  "NAME": "Dither",
+  "CATEGORIES": [
+    "Retro",
+    "Core Image"
+  ],
+  "DESCRIPTION": "Adds dither noise (CIDither).",
+  "INPUTS": [
+    {
+      "NAME": "intensity",
+      "LABEL": "Intensity",
+      "TYPE": "float",
+      "DEFAULT": 1,
+      "MIN": 0,
+      "MAX": 5
+    }
+  ],
+  "GRAPH": [
+    {
+      "ID": "fx",
+      "FILTER": "CIDither",
+      "INPUTS": {
+        "inputImage": "$input",
+        "inputIntensity": "=intensity"
+      }
+    }
+  ],
+  "OUTPUT": "@fx"
+}

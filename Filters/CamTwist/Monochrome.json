@@ -1,0 +1,10 @@
+{
+  "NAME": "Monochrome",
+  "CATEGORIES": ["CamTwist", "Color"],
+  "DESCRIPTION": "Tints the picture with a single color (CIColorMonochrome).",
+  "INPUTS": [
+    { "NAME": "color", "LABEL": "Color", "TYPE": "color", "DEFAULT": [0.6, 0.45, 0.3, 1] },
+    { "NAME": "intensity", "LABEL": "Intensity", "TYPE": "float", "DEFAULT": 1, "MIN": 0, "MAX": 1 }
+  ],
+  "GRAPH": [ { "ID": "m", "FILTER": "CIColorMonochrome", "INPUTS": { "inputImage": "$input", "inputColor": "%color", "inputIntensity": "=intensity" } } ]
+}

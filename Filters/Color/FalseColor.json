@@ -1,0 +1,44 @@
+{
+  "NAME": "False Color",
+  "CATEGORIES": [
+    "Color",
+    "Core Image"
+  ],
+  "DESCRIPTION": "Map dark/bright to two colors (CIFalseColor).",
+  "INPUTS": [
+    {
+      "NAME": "dark",
+      "LABEL": "Dark Color",
+      "TYPE": "color",
+      "DEFAULT": [
+        0.1,
+        0.0,
+        0.35,
+        1
+      ]
+    },
+    {
+      "NAME": "bright",
+      "LABEL": "Bright Color",
+      "TYPE": "color",
+      "DEFAULT": [
+        1.0,
+        0.8,
+        0.2,
+        1
+      ]
+    }
+  ],
+  "GRAPH": [
+    {
+      "ID": "fx",
+      "FILTER": "CIFalseColor",
+      "INPUTS": {
+        "inputImage": "$input",
+        "inputColor0": "%dark",
+        "inputColor1": "%bright"
+      }
+    }
+  ],
+  "OUTPUT": "@fx"
+}

@@ -1,0 +1,67 @@
+{
+  "NAME": "Torus Lens",
+  "CATEGORIES": [
+    "Distortion",
+    "Core Image"
+  ],
+  "DESCRIPTION": "A ring-shaped lens (CITorusLensDistortion).",
+  "INPUTS": [
+    {
+      "NAME": "center",
+      "LABEL": "Center",
+      "TYPE": "point2D",
+      "DEFAULT": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "NAME": "radius",
+      "LABEL": "Radius",
+      "TYPE": "float",
+      "DEFAULT": 0.3,
+      "MIN": 0.05,
+      "MAX": 1
+    },
+    {
+      "NAME": "width",
+      "LABEL": "Width",
+      "TYPE": "float",
+      "DEFAULT": 0.12,
+      "MIN": 0.01,
+      "MAX": 0.5
+    },
+    {
+      "NAME": "refraction",
+      "LABEL": "Refraction",
+      "TYPE": "float",
+      "DEFAULT": 1.7,
+      "MIN": 0,
+      "MAX": 5
+    }
+  ],
+  "GRAPH": [
+    {
+      "ID": "clamped",
+      "FILTER": "CIAffineClamp",
+      "INPUTS": {
+        "inputImage": "$input",
+        "inputTransform": {
+          "TRANSFORM": {}
+        }
+      }
+    },
+    {
+      "ID": "fx",
+      "FILTER": "CITorusLensDistortion",
+      "INPUTS": {
+        "inputImage": "@clamped",
+        "inputCenter": "%center",
+        "inputRadius": "=radius * HEIGHT",
+        "inputWidth": "=width * HEIGHT",
+        "inputRefraction": "=refraction"
+      }
+    }
+  ],
+  "OUTPUT": "@fx"
+}

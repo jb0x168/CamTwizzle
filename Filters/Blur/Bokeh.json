@@ -1,0 +1,66 @@
+{
+  "NAME": "Bokeh",
+  "CATEGORIES": [
+    "Blur",
+    "Core Image"
+  ],
+  "DESCRIPTION": "Out-of-focus highlights become rings (CIBokehBlur).",
+  "INPUTS": [
+    {
+      "NAME": "radius",
+      "LABEL": "Radius %",
+      "TYPE": "float",
+      "DEFAULT": 2,
+      "MIN": 0,
+      "MAX": 6
+    },
+    {
+      "NAME": "ring",
+      "LABEL": "Ring Amount",
+      "TYPE": "float",
+      "DEFAULT": 0.3,
+      "MIN": 0,
+      "MAX": 1
+    },
+    {
+      "NAME": "ringSize",
+      "LABEL": "Ring Size",
+      "TYPE": "float",
+      "DEFAULT": 0.1,
+      "MIN": 0,
+      "MAX": 0.2
+    },
+    {
+      "NAME": "softness",
+      "LABEL": "Softness",
+      "TYPE": "float",
+      "DEFAULT": 1,
+      "MIN": 0,
+      "MAX": 10
+    }
+  ],
+  "GRAPH": [
+    {
+      "ID": "clamped",
+      "FILTER": "CIAffineClamp",
+      "INPUTS": {
+        "inputImage": "$input",
+        "inputTransform": {
+          "TRANSFORM": {}
+        }
+      }
+    },
+    {
+      "ID": "fx",
+      "FILTER": "CIBokehBlur",
+      "INPUTS": {
+        "inputImage": "@clamped",
+        "inputRadius": "=radius * HEIGHT / 100",
+        "inputRingAmount": "=ring",
+        "inputRingSize": "=ringSize",
+        "inputSoftness": "=softness"
+      }
+    }
+  ],
+  "OUTPUT": "@fx"
+}

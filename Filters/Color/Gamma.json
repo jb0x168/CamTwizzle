@@ -1,0 +1,29 @@
+{
+  "NAME": "Gamma",
+  "CATEGORIES": [
+    "Color",
+    "Core Image"
+  ],
+  "DESCRIPTION": "Gamma curve (CIGammaAdjust).",
+  "INPUTS": [
+    {
+      "NAME": "power",
+      "LABEL": "Power",
+      "TYPE": "float",
+      "DEFAULT": 0.75,
+      "MIN": 0.25,
+      "MAX": 3
+    }
+  ],
+  "GRAPH": [
+    {
+      "ID": "fx",
+      "FILTER": "CIGammaAdjust",
+      "INPUTS": {
+        "inputImage": "$input",
+        "inputPower": "=power"
+      }
+    }
+  ],
+  "OUTPUT": "@fx"
+}

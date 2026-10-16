@@ -1,0 +1,39 @@
+{
+  "NAME": "Crystallize",
+  "CATEGORIES": [
+    "Stylize",
+    "Core Image"
+  ],
+  "DESCRIPTION": "Polygonal crystal cells (CICrystallize).",
+  "INPUTS": [
+    {
+      "NAME": "radius",
+      "LABEL": "Cell Size %",
+      "TYPE": "float",
+      "DEFAULT": 2.5,
+      "MIN": 0.5,
+      "MAX": 10
+    },
+    {
+      "NAME": "center",
+      "LABEL": "Center",
+      "TYPE": "point2D",
+      "DEFAULT": [
+        0.5,
+        0.5
+      ]
+    }
+  ],
+  "GRAPH": [
+    {
+      "ID": "fx",
+      "FILTER": "CICrystallize",
+      "INPUTS": {
+        "inputImage": "$input",
+        "inputCenter": "%center",
+        "inputRadius": "=radius * HEIGHT / 100"
+      }
+    }
+  ],
+  "OUTPUT": "@fx"
+}

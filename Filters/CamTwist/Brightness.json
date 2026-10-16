@@ -1,0 +1,13 @@
+{
+  "NAME": "Brightness",
+  "CATEGORIES": ["CamTwist", "Color"],
+  "DESCRIPTION": "Brightness, contrast and saturation (CIColorControls), like CamTwist's Brightness effect.",
+  "INPUTS": [
+    { "NAME": "brightness", "LABEL": "Brightness", "TYPE": "float", "DEFAULT": 0.0, "MIN": -1, "MAX": 1 },
+    { "NAME": "contrast", "LABEL": "Contrast", "TYPE": "float", "DEFAULT": 1.0, "MIN": 0.25, "MAX": 4 },
+    { "NAME": "saturation", "LABEL": "Saturation", "TYPE": "float", "DEFAULT": 1.0, "MIN": 0, "MAX": 3 }
+  ],
+  "GRAPH": [
+    { "ID": "cc", "FILTER": "CIColorControls", "INPUTS": { "inputImage": "$input", "inputBrightness": "=brightness", "inputContrast": "=contrast", "inputSaturation": "=saturation" } }
+  ]
+}
